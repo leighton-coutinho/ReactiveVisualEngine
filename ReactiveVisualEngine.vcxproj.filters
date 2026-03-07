@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="SrcFiles">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="SrcFiles\audio">
+      <UniqueIdentifier>{228c9757-a4b4-467a-a991-909404ffd8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SrcFiles\dsp">
+      <UniqueIdentifier>{ec710915-a073-4858-942a-b126f6119ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SrcFiles\net">
+      <UniqueIdentifier>{06fa7d52-fba8-4c0b-8151-af3423d5a059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SrcFiles\util">
+      <UniqueIdentifier>{b5d327d5-c719-4d05-ac7e-0965f1a517d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Headers\audio">
+      <UniqueIdentifier>{8fdab4b5-b77b-4f94-9240-36bb82c4ed1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\dsp">
+      <UniqueIdentifier>{ed2c1664-4873-4b63-b50a-b7748371bc05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\net">
+      <UniqueIdentifier>{16171792-b49f-45f3-9170-3a6ef737a841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\util">
+      <UniqueIdentifier>{a43c585c-2092-4111-a28d-95a24b3c61b3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ReactiveVisualEngine.cpp">
+      <Filter>SrcFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="WasapiCapture.cpp">
+      <Filter>SrcFiles\audio</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WasapiCapture.h">
+      <Filter>Headers\audio</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ReactiveVisualEngine.vcxproj" Id="b4ff93ec-184e-4c8a-890d-36a1485cc116" />
+</Solution>
