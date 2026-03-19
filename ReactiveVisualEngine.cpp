@@ -11,6 +11,7 @@
 #include "Headers/dsp/EnvelopeFollower.h"
 #include "Headers/dsp/NoiseGate.h"
 #include "Headers/dsp/AdaptiveNormalizer.h"
+#include "Headers/net/UdpSender.h"
 
 int main()
 {
@@ -40,6 +41,8 @@ int main()
 
     bool initialized = false;
 
+    UdpSender udp;
+
     cap.setCallback(
         [&](const float* data, size_t frames, int channels, int sampleRate)
         {
@@ -49,6 +52,7 @@ int main()
             // 2️⃣ Initialize DSP once (we need sample rate)
             if (!initialized)
             {
+                udp.initialize("127.0.0.1", 9000);
                 float sr = static_cast<float>(sampleRate);
                 splitter.initialize(sr);
 
@@ -91,6 +95,7 @@ int main()
                 highValue = highNorm.process(h);
             }
 
+            udp.send(bassValue, midValue, highValue);
             // 4️⃣ Print smoothed output
             std::cout
                 << "Bass: " << bassValue
@@ -108,6 +113,7 @@ int main()
     std::cin.get();
 
     cap.stop();
+    udp.shutdown();
 
     return 0;
 }

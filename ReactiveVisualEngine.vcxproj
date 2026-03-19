@@ -140,6 +140,7 @@
     <ClInclude Include="Headers\audio\WasapiCapture.h" />
     <ClInclude Include="Headers\dsp\RMS.h" />
     <ClInclude Include="Headers\dsp\NoiseGate.h" />
+    <ClInclude Include="Headers\net\UdpSender.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
