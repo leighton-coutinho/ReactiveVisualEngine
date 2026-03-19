@@ -51,9 +51,9 @@ int main()
                 midEnv.initialize(sr, 20.0f, 150.0f);
                 highEnv.initialize(sr, 5.0f, 80.0f);
 
-                bassGate.initialize(sr, 0.01f);
-                midGate.initialize(sr, 0.005f);
-                highGate.initialize(sr, 0.003f);
+                bassGate.initialize(sr, 0.005f);
+                midGate.initialize(sr, 0.003f);
+                highGate.initialize(sr, 0.002f);
 
                 initialized = true;
             }
