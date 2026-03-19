@@ -138,6 +138,7 @@
     <ClInclude Include="Headers\dsp\BiquadFilter.h" />
     <ClInclude Include="Headers\audio\WasapiCapture.h" />
     <ClInclude Include="Headers\dsp\RMS.h" />
+    <ClInclude Include="Headers\dsp\NoiseGate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

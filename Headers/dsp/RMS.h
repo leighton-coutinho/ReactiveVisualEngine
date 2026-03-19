@@ -14,7 +14,7 @@ public:
             sum += buffer[i] * buffer[i];
         }
 
-        return std::sqrt(sum / n);
+        return static_cast<float>(std::sqrt(sum / n));
     }
 
 };

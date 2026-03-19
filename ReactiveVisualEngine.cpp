@@ -9,6 +9,7 @@
 #include "Headers/dsp/RMS.h"
 #include "Headers/dsp/BandSplitter.h"
 #include "Headers/dsp/EnvelopeFollower.h"
+#include "Headers/dsp/NoiseGate.h"
 
 int main()
 {
@@ -28,6 +29,10 @@ int main()
     EnvelopeFollower midEnv;
     EnvelopeFollower highEnv;
 
+    NoiseGate bassGate;
+    NoiseGate midGate;
+    NoiseGate highGate;
+
     bool initialized = false;
 
     cap.setCallback(
@@ -39,11 +44,16 @@ int main()
             // 2️⃣ Initialize DSP once (we need sample rate)
             if (!initialized)
             {
-                splitter.initialize(static_cast<float>(sampleRate));
+                float sr = static_cast<float>(sampleRate);
+                splitter.initialize(sr);
 
-                bassEnv.initialize(static_cast<float>(sampleRate), 10.0f, 200.0f);
-                midEnv.initialize(static_cast<float>(sampleRate), 20.0f, 150.0f);
-                highEnv.initialize(static_cast<float>(sampleRate), 5.0f, 80.0f);
+                bassEnv.initialize(sr, 10.0f, 200.0f);
+                midEnv.initialize(sr, 20.0f, 150.0f);
+                highEnv.initialize(sr, 5.0f, 80.0f);
+
+                bassGate.initialize(sr, 0.01f);
+                midGate.initialize(sr, 0.005f);
+                highGate.initialize(sr, 0.003f);
 
                 initialized = true;
             }
@@ -57,9 +67,13 @@ int main()
             {
                 splitter.process(s);
 
-                bassValue = bassEnv.process(splitter.bass);
-                midValue = midEnv.process(splitter.mid);
-                highValue = highEnv.process(splitter.high);
+                float b = bassEnv.process(splitter.bass);
+                float m = midEnv.process(splitter.mid);
+                float h = highEnv.process(splitter.high);
+
+                bassValue = bassGate.process(b);
+                midValue = midGate.process(m);
+                highValue = highGate.process(h);
             }
 
             // 4️⃣ Print smoothed output
