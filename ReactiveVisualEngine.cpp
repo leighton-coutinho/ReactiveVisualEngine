@@ -10,6 +10,7 @@
 #include "Headers/dsp/BandSplitter.h"
 #include "Headers/dsp/EnvelopeFollower.h"
 #include "Headers/dsp/NoiseGate.h"
+#include "Headers/dsp/AdaptiveNormalizer.h"
 
 int main()
 {
@@ -33,6 +34,10 @@ int main()
     NoiseGate midGate;
     NoiseGate highGate;
 
+    AdaptiveNormalizer bassNorm;
+    AdaptiveNormalizer midNorm;
+    AdaptiveNormalizer highNorm;
+
     bool initialized = false;
 
     cap.setCallback(
@@ -55,6 +60,10 @@ int main()
                 midGate.initialize(sr, 0.003f);
                 highGate.initialize(sr, 0.002f);
 
+                bassNorm.initialize(sr);
+                midNorm.initialize(sr);
+                highNorm.initialize(sr);
+
                 initialized = true;
             }
 
@@ -71,9 +80,15 @@ int main()
                 float m = midEnv.process(splitter.mid);
                 float h = highEnv.process(splitter.high);
 
-                bassValue = bassGate.process(b);
-                midValue = midGate.process(m);
-                highValue = highGate.process(h);
+                // Gate first
+                b = bassGate.process(b);
+                m = midGate.process(m);
+                h = highGate.process(h);
+
+                // THEN normalize
+                bassValue = bassNorm.process(b);
+                midValue = midNorm.process(m);
+                highValue = highNorm.process(h);
             }
 
             // 4️⃣ Print smoothed output
