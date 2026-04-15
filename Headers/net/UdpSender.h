@@ -30,7 +30,7 @@ public:
     {
         char buffer[128];
 
-        int len = sprintf_s(buffer, "bass %f mid %f high %f", bass, mid, high);
+        int len = sprintf_s(buffer, "bassMidHigh,%f,%f,%f\n", bass, mid, high);
 
         sendto(m_socket, buffer, len, 0,
             (sockaddr*)&m_addr, sizeof(m_addr));
